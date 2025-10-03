@@ -1,0 +1,24 @@
+name: Code Style Check
+
+on:
+  pull_request:
+
+jobs:
+  ruff-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+
+    - name: Run ruff check
+      uses: astral-sh/ruff-action@57714a7c8a2e59f32539362ba31877a1957dded1 # v3.5.1
+      with:
+        src: "google_auth_provider/"
+        args: "check --output-format=github"
+
+    - name: Run ruff format check
+      uses: astral-sh/ruff-action@57714a7c8a2e59f32539362ba31877a1957dded1 # v3.5.1
+      with:
+        src: "google_auth_provider/"
+        args: "format --check"
